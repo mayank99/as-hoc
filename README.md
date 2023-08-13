@@ -1,23 +1,25 @@
-# scope-hoc
+# polymorphic
 
-Demo of a higher-order utility component that returns a type-safe polymorphic component with a scoped version of the CSS class name. Reduces boilerplate by allowing creating components in a single line.
+Demo of a utility function that reduces the boilerplate required to work with type-safe polymorphic components and handle CSS-modules-like scoped classes at the same time.
 
 Usage:
 
 ```tsx
-// <div class='_my-thing-12345'>
-const MyThing = ScopedBox('my-thing');
+const Box = polymorphic.div('whatever');
 
-// <span class='_my-thing-12345'>
-<MyThing as='span'>...</MyThing>;
+// renders <div class='__whatever-123abc'>
+<Box>...</Box>
+
+// renders <a> and supports intellisense for href, etc
+<Box as='a' href='#'>...</Box> 
 ```
 
 ```tsx
-// <a class='_my-link-12345'>
-const MyLink = ScopedBox('my-link', 'a');
-```
+const MyButton = polymorphic.button('my-button', { type: 'button' });
 
-```tsx
-// <button type='button' class='_my-button-12345'>
-const MyButton = ScopedBox('my-button', 'button', { type: 'button' });
+// renders <button type='button' class='__my-button-123abc'>
+<MyButton>...</MyButton>
+
+// renders <a> and supports intellisense for href, etc
+<MyButton as='a' href='#'>...</MyButton>
 ```
