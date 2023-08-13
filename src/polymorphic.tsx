@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 
 /**
  * Returns a polymorphic component with simple attribute support.
+ * Supports all built-in html elements, accessible as keys.
  * 
  * @example
  * const MyThing = polymorphic.div('my-thing');
@@ -43,7 +44,7 @@ export const polymorphic = new Proxy({}, {
 	},
 }) as { [key in keyof JSX.IntrinsicElements]: (className: string, attributes?: JSX.IntrinsicElements[key]) => PolymorphicForwardRefComponent<key> };
 
-/** Returns a simple `<div>` that supports the `as` prop. */
+/** Renders a simple `<div>` that supports the `as` prop. */
 export const Box = polymorphic.div('');
 
 // dont even ask
